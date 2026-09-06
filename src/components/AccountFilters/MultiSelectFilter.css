@@ -1,0 +1,50 @@
+.multi-select-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.multi-select-filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.multi-select-filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.multi-select-filter-chevron {
+  width: 14px;
+  height: 14px;
+  color: #94a3b8;
+  transition: transform 0.15s;
+}
+
+.multi-select-filter-chevron-open {
+  transform: rotate(180deg);
+}
+
+.multi-select-filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.multi-select-filter-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.multi-select-filter-actions button {
+  font-size: 12px;
+}
