@@ -1,12 +1,4 @@
-import { useMemo } from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import Checkbox from "../ui/Checkbox";
-import Badge from "../ui/Badge";
-import ExternalLink from "../ExternalLink";
-import { getCategoryLabel, getCategoryBadgeStyle } from "../../utils/labels";
-import { getStatusLabel } from "../../utils/labels";
-import { getPriorityLabel } from "../../utils/labels";
+import Icon from "../Icon/Icon";
 import "./AccountCard.css";
 
 const cardVariants = {
@@ -22,88 +14,66 @@ const cardVariants = {
   }),
 };
 
-export default function AccountCard({ account, isSelected, onToggle, index = 0 }) {
-  const categoryStyle = useMemo(() => getCategoryBadgeStyle(account.category), [account.category]);
+export default function AccountCard({ account, isSelected, onToggle, index = 0, pinned = false, onPinToggle }) {
   const primaryUrl = account.urls?.[0]?.url;
   const additionalCount = (account.urls?.length || 0) - 1;
 
   return (
-    <motion.div
-      className={`account-card ${isSelected ? "account-card-selected" : ""}`}
+    <div
+      className={`account-card ${isSelected ? "account-card-selected" : ""} ${pinned ? "account-card-pinned" : ""}`}
       role="row"
       variants={cardVariants}
       initial="hidden"
       animate="visible"
       custom={index}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      <div className="account-card-header" role="gridcell">
+      {onPinToggle && (
+        <button
+          type="button"
+          className="account-card-pin"
+          onClick={() => onPinToggle(account.id)}
+          aria-label={pinned ? "Unpin account" : "Pin account"}
+          title={pinned ? "Unpin account" : "Pin account to top"}
+        >
+          <Icon name={pinned ? "PinOff" : "Pin"} size={14} />
+        </button>
+      )}
+      <div className="account-card-header">
         <div className="account-card-title-area">
-          <Link to={`/accounts/${account.id}`} className="account-card-name-link">
+          <a href={primaryUrl} className="account-card-name-link" target="_blank" rel="noopener noreferrer">
             <span className="account-card-name">{account.name}</span>
-          </Link>
+          </a>
           {account.featured && (
             <span className="account-card-featured" title="Featured">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path
-                  d="M7 1L9 5L13 5.5L10 8.5L11 13L7 10.5L3 13L4 8.5L1 5.5L5 5L7 1Z"
-                  fill="#f59e0b"
-                />
-              </svg>
+              <Icon name="Star" size={14} />
             </span>
           )}
         </div>
         <div className="account-card-description">{account.description}</div>
       </div>
 
-      <div className="account-card-body" role="gridcell">
+      <div className="account-card-body">
         <div className="account-card-meta">
           <span className="account-card-meta-label">Category</span>
-          <span
-            className="badge"
-            style={{
-              backgroundColor: categoryStyle.backgroundColor,
-              color: categoryStyle.color,
-              borderColor: categoryStyle.borderColor,
-            }}
-          >
-            {getCategoryLabel(account.category)}
-          </span>
+          <span className="badge badge-default">{account.category}</span>
         </div>
 
         <div className="account-card-meta">
           <span className="account-card-meta-label">Status</span>
-          <Badge
-            variant={
-              account.status === "active"
-                ? "success"
-                : account.status === "inactive"
-                  ? "warning"
-                  : "error"
-            }
-          >
-            {getStatusLabel(account.status)}
-          </Badge>
+          <span className={`badge badge-${account.status === "active" ? "success" : account.status === "inactive" ? "warning" : "error"}`}>
+            {account.status}
+          </span>
         </div>
 
         <div className="account-card-meta">
           <span className="account-card-meta-label">Priority</span>
-          <Badge
-            variant={
-              account.priority === "high"
-                ? "error"
-                : account.priority === "medium"
-                  ? "warning"
-                  : "info"
-            }
-          >
-            {getPriorityLabel(account.priority)}
-          </Badge>
+          <span className={`badge badge-${account.priority === "high" ? "error" : account.priority === "medium" ? "warning" : "info"}`}>
+            {account.priority}
+          </span>
         </div>
       </div>
 
-      <div className="account-card-footer" role="gridcell">
+      <div className="account-card-footer">
         <div className="account-card-tags">
           {(account.tags || []).slice(0, 4).map((tag) => (
             <span key={tag} className="tag-chip">
@@ -123,31 +93,30 @@ export default function AccountCard({ account, isSelected, onToggle, index = 0 }
               onChange={() => onToggle(account.id)}
             />
             <span className="card-select-visual" aria-hidden="true">
-              {isSelected && (
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path
-                    d="M2.5 6L5 8.5L9.5 3.5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
+              {isSelected && <Icon name="Check" size={12} />}
             </span>
           </label>
           {primaryUrl && (
-            <span className="account-card-urls">
-              <ExternalLink href={primaryUrl}>Open</ExternalLink>
+            <div className="account-card-urls">
+              <a
+                href={primaryUrl}
+                className="account-card-open"
+                target="_blank"
+                rel="noopener noreferrer"
+                title={primaryUrl}
+              >
+                <Icon name="ExternalLink" size={14} />
+                Open
+              </a>
               {additionalCount > 0 && (
-                <Link to={`/accounts/${account.id}`} className="account-card-more">
+                <a href={`/accounts/${account.id}`} className="account-card-more">
                   +{additionalCount} more
-                </Link>
+                </a>
               )}
-            </span>
+            </div>
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

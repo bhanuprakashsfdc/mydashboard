@@ -1,6 +1,12 @@
 .accounts-page {
   display: flex;
   min-height: 100vh;
+  background: var(--color-content-bg);
+  transition: margin-left var(--transition-base);
+}
+
+.accounts-page-collapsed .accounts-page-main {
+  margin-left: 64px;
 }
 
 .accounts-page-main {
@@ -8,32 +14,14 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 32px;
-  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 100%);
+  padding: var(--spacing-xl);
+  background: transparent;
+  transition: margin-left var(--transition-base);
 }
 
 .accounts-page-header {
-  margin-bottom: 32px;
+  margin-bottom: var(--spacing-lg);
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.accounts-page-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin: 0 0 8px 0;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.accounts-page-subtitle {
-  font-size: 16px;
-  color: var(--color-text-secondary);
-  margin: 0;
-  font-weight: 400;
 }
 
 @keyframes fadeInUp {
@@ -47,16 +35,18 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .accounts-page {
     flex-direction: column;
   }
 
   .accounts-page-main {
-    padding: 20px;
+    padding: var(--spacing-lg) var(--spacing-md);
   }
+}
 
-  .accounts-page-title {
-    font-size: 24px;
+@media (max-width: 768px) {
+  .accounts-page-main {
+    padding: var(--spacing-md);
   }
 }

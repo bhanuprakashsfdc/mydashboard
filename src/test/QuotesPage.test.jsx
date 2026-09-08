@@ -10,7 +10,7 @@ function renderWithRouter(ui) {
 describe("QuotesPage", () => {
   it("renders quotes page", () => {
     renderWithRouter(<QuotesPage />);
-    expect(screen.getByText("Quotes")).toBeInTheDocument();
+    expect(screen.getAllByText("Quotes").length).toBeGreaterThan(0);
     expect(screen.getByText("Featured")).toBeInTheDocument();
     expect(screen.getByText("All Quotes")).toBeInTheDocument();
   });

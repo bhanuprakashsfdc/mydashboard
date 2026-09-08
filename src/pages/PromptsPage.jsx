@@ -1,16 +1,23 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { prompts, promptCategories } from "../data/prompts";
-import { getCategoryBadgeStyle } from "../utils/labels";
+import Icon from "../components/Icon/Icon";
 import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
 import Sidebar from "../components/Sidebar/Sidebar";
+import AppHeader from "../components/AppHeader/AppHeader";
+import { useToast } from "../components/Toast/useToast";
+import { youTubeTracks } from "../data/music";
 import "./PromptsPage.css";
 
 export default function PromptsPage() {
+  const navigate = useNavigate();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [selectedPrompt, setSelectedPrompt] = useState(null);
   const [formData, setFormData] = useState({});
   const [generatedEmail, setGeneratedEmail] = useState("");
   const [copiedPromptId, setCopiedPromptId] = useState(null);
+  const { addToast } = useToast();
 
   const handleFieldChange = (fieldKey, value) => {
     setFormData((prev) => ({ ...prev, [fieldKey]: value }));
@@ -21,9 +28,10 @@ export default function PromptsPage() {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedPromptId(prompt.id);
+      addToast("Prompt copied to clipboard", "success", 2000);
       setTimeout(() => setCopiedPromptId(null), 1500);
     } catch {
-      // ignore clipboard errors
+      addToast("Failed to copy prompt", "error", 2500);
     }
   };
 
@@ -41,31 +49,41 @@ export default function PromptsPage() {
     });
 
     setGeneratedEmail(emailBody);
+    addToast("Email generated", "success", 2000);
   };
 
   const resetForm = () => {
     setSelectedPrompt(null);
     setFormData({});
     setGeneratedEmail("");
+    addToast("Form reset", "info", 1500);
   };
 
   return (
-    <div className="prompts-page">
-      <Sidebar selectedSection="prompts" onSelectSection={resetForm} accountCounts={{}} promptsCount={prompts.length} />
+    <div className={`prompts-page ${sidebarCollapsed ? "prompts-page-collapsed" : ""}`}>
+      <Sidebar
+        selectedSection={null}
+        onSelectSection={() => navigate("/")}
+        accountCounts={{ all: 0 }}
+        promptsCount={prompts.length}
+        musicTracks={youTubeTracks}
+        collapsed={sidebarCollapsed}
+        onCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+      />
       <div className="prompts-page-main">
-        <div className="prompts-page-header">
-          <h1 className="prompts-page-title">Prompts</h1>
-          <p className="prompts-page-subtitle">
-            Work prompts and templates
-          </p>
-        </div>
+        <AppHeader
+          title="Prompts"
+          subtitle="Work prompts and templates"
+          user={{ name: "Bhanu" }}
+          onMenuClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          collapsed={sidebarCollapsed}
+        />
 
         <div className="prompts-layout">
           <div className="prompts-list">
             <h2 className="prompts-section-title">Available Prompts</h2>
             <div className="prompts-cards">
               {prompts.map((prompt) => {
-                const categoryStyle = getCategoryBadgeStyle(prompt.category);
                 const categoryLabel = promptCategories.find((c) => c.id === prompt.category)?.label || prompt.category;
 
                 return (
@@ -79,9 +97,7 @@ export default function PromptsPage() {
                   >
                     <div className="prompt-card-header">
                       <h3 className="prompt-card-title">{prompt.title}</h3>
-                      <Badge
-                        variant={prompt.category === "work" ? "success" : "info"}
-                      >
+                      <Badge variant={prompt.category === "work" ? "success" : "info"}>
                         {categoryLabel}
                       </Badge>
                     </div>
@@ -95,7 +111,17 @@ export default function PromptsPage() {
                           copyPrompt(prompt);
                         }}
                       >
-                        {copiedPromptId === prompt.id ? "Copied" : "Copy Prompt"}
+                        {copiedPromptId === prompt.id ? (
+                          <>
+                            <Icon name="Check" size={14} />
+                            Copied
+                          </>
+                        ) : (
+                          <>
+                            <Icon name="Copy" size={14} />
+                            Copy Prompt
+                          </>
+                        )}
                       </Button>
                     </div>
                   </div>
@@ -114,6 +140,7 @@ export default function PromptsPage() {
                     className="btn btn-ghost btn-sm"
                     onClick={resetForm}
                   >
+                    <Icon name="X" size={14} />
                     Reset
                   </button>
                 </div>
@@ -150,6 +177,7 @@ export default function PromptsPage() {
                       className="btn btn-primary"
                       onClick={generateEmail}
                     >
+                      <Icon name="Send" size={14} />
                       Generate Email
                     </button>
                   </div>

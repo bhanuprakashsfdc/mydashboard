@@ -2,11 +2,11 @@ import { useMemo } from "react";
 import { accounts } from "../data/data.js";
 
 const sections = [
-  { id: "personal", label: "Personal", icon: "👤" },
-  { id: "hobby", label: "Hobby", icon: "🎨" },
-  { id: "work", label: "Work", icon: "💼" },
-  { id: "websites", label: "Websites", icon: "🌐" },
-  { id: "skills", label: "Skills", icon: "⚡" },
+  { id: "personal", label: "Personal", icon: "User" },
+  { id: "hobby", label: "Hobby", icon: "Palette" },
+  { id: "work", label: "Work", icon: "Briefcase" },
+  { id: "websites", label: "Websites", icon: "Globe" },
+  { id: "skills", label: "Skills", icon: "Zap" },
 ];
 
 export function useSectionFilter(selectedSectionId) {

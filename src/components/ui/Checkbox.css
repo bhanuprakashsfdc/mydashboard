@@ -20,22 +20,22 @@
   width: 18px;
   height: 18px;
   border: 2px solid var(--color-border);
-  border-radius: 4px;
-  background: var(--color-surface);
-  color: var(--color-surface);
+  border-radius: 5px;
+  background: var(--color-surface-solid);
+  color: var(--color-surface-solid);
   transition: all var(--transition-fast);
 }
 
 .checkbox-input:checked + .checkbox-visual {
   background: var(--color-primary);
   border-color: var(--color-primary);
-  color: var(--color-surface);
+  color: #ffffff;
 }
 
 .checkbox-input:indeterminate + .checkbox-visual {
   background: var(--color-primary);
   border-color: var(--color-primary);
-  color: var(--color-surface);
+  color: #ffffff;
 }
 
 .checkbox-input:focus-visible + .checkbox-visual {
@@ -44,6 +44,6 @@
 }
 
 .checkbox-label {
-  font-size: 14px;
+  font-size: var(--font-size-body);
   color: var(--color-text-primary);
 }

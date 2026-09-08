@@ -4,6 +4,7 @@ import MultiSelectFilter from "./MultiSelectFilter";
 import { filterDefinitions } from "../../data/filters";
 import { getFilterOptions } from "../../utils/filterOptions";
 import { STATUS_OPTIONS, PRIORITY_OPTIONS, TYPE_OPTIONS } from "../../types";
+import Icon from "../Icon/Icon";
 import "./FilterPanel.css";
 
 export default function FilterPanel({
@@ -30,14 +31,7 @@ export default function FilterPanel({
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path
-            d="M2 4H14M4 8H12M6 12H10"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
+        <Icon name="Filter" size={16} />
         <span>Filters</span>
         {hasActiveFilters && <span className="filter-panel-badge" />}
       </button>

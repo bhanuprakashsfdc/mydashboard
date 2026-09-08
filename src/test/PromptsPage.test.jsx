@@ -2,10 +2,15 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
+import { ToastProvider } from "../components/Toast/ToastProvider";
 import PromptsPage from "../pages/PromptsPage";
 
 function renderWithRouter(ui) {
-  return render(<BrowserRouter>{ui}</BrowserRouter>);
+  return render(
+    <ToastProvider>
+      <BrowserRouter>{ui}</BrowserRouter>
+    </ToastProvider>
+  );
 }
 
 describe("PromptsPage", () => {

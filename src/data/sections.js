@@ -1,7 +1,7 @@
 export const sections = [
-  { id: "personal", label: "Personal", icon: "👤" },
-  { id: "hobby", label: "Hobby", icon: "🎨" },
-  { id: "work", label: "Work", icon: "💼" },
+  { id: "personal", label: "Personal", icon: "User" },
+  { id: "hobby", label: "Hobby", icon: "Palette" },
+  { id: "work", label: "Work", icon: "Briefcase" },
 ];
 
 export const getSectionById = (id) => sections.find((s) => s.id === id);

@@ -4,10 +4,10 @@
   padding: 0 14px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: var(--color-surface);
+  background: var(--color-surface-solid);
   color: var(--color-text-primary);
   font-family: inherit;
-  font-size: 14px;
+  font-size: var(--font-size-body);
   line-height: 40px;
   outline: none;
   transition: all var(--transition-fast);
@@ -19,9 +19,11 @@
 
 .input:hover:not(:focus) {
   border-color: var(--color-text-muted);
+  background: var(--color-surface-elevated);
 }
 
 .input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px var(--color-primary-light);
+  background: var(--color-surface-elevated);
 }

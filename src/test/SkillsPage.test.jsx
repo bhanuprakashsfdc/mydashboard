@@ -10,7 +10,7 @@ function renderWithRouter(ui) {
 describe("SkillsPage", () => {
   it("renders skills page", () => {
     renderWithRouter(<SkillsPage />);
-    expect(screen.getByText("Skills")).toBeInTheDocument();
+    expect(screen.getAllByText("Skills").length).toBeGreaterThan(0);
     expect(screen.getByText("Technical skills and expertise")).toBeInTheDocument();
   });
 

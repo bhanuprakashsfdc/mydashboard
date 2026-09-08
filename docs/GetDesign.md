@@ -1,98 +1,108 @@
 # Design System — MyDashboard
 
+> **Status:** Active. This document reflects the current light warm-neutral design system.
+
 ## Visual Language
 
 ### Typography
-- **Font stack:** `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`
-- **Grid text:** 13px, regular weight, line-height 1.5
-- **UI labels:** 13px, medium weight
-- **Headings:** 20-24px, semibold
-- **Muted:** 12px, regular
+- **Font stack:** Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
+- **Page title:** 30px, weight 600, letter-spacing -0.02em
+- **Section title:** 16-18px, weight 600
+- **Card title:** 14-16px, weight 500-600
+- **Body:** 13-14px, weight 400
+- **Navigation:** 13px, weight 500
+- **KPI number:** 28px, weight 500
+- **Small labels:** 11px, weight 600, uppercase, letter-spacing 0.05em
+- **Table:** 12-13px
 
 ### Spacing scale
 Base unit: 4px
-- 4, 8, 12, 16, 20, 24, 32, 48
+- 4px (xs), 8px (sm), 12px, 16px (md), 20px (card), 24px (lg), 32px (xl), 48px (2xl)
 
 ### Border radius
-- Small: 4px (chips, inputs)
-- Medium: 6px (buttons, cards)
-- Large: 8px (panels)
+- Small: 8px (inputs, chips)
+- Medium: 12px (buttons, inline elements)
+- Large: 16px (panels)
+- Card: 18px (dashboard cards)
 - Full: 9999px (badges, pills)
 
 ### Shadows
-Minimal shadows. Use subtle borders (`#e2e8f0`) for separation rather than elevation.
+- Card: `0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)`
+- Card hover: `0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06)`
+- Float: `0 8px 24px rgba(0,0,0,0.10)`
 
 ### Icons
-Inline SVG, 14-16px, stroke-based for UI icons, filled for status indicators.
+Lucide React, stroke-based, 1.5px stroke width. Consistent sizes: 14px (inline), 16px (navigation), 18px (KPI), 24px (empty states).
 
-### Grid density
-- Compact rows (10px vertical padding)
-- No unnecessary whitespace
-- Progressive disclosure via column visibility
+### Glassmorphism
+- Surface: `rgba(255,255,255,0.55)`
+- Blur: `blur(18px) saturate(140%)`
+- Border: `1px solid rgba(255,255,255,0.65)`
+- Radius: 18px
 
 ---
 
 ## Colors
 
-### Semantic palette
-
+### Background
 | Token | Value | Usage |
 |---|---|---|
-| Background | `#f8fafc` | Page background |
-| Surface | `#ffffff` | Cards, panels, inputs |
-| Primary | `#2563eb` | Links, active states, focus rings |
-| Secondary | `#475569` | Secondary text, inactive elements |
-| Text | `#0f172a` | Primary text |
-| Muted text | `#64748b` | Secondary text |
-| Border | `#e2e8f0` | Borders, dividers |
-| Success | `#10b981` | Active status |
-| Warning | `#f59e0b` | Inactive, medium priority |
-| Error | `#ef4444` | Archived, high priority |
-| Info | `#3b82f6` | Focus rings, info states |
+| Background | `#F3F1EF` | Page background |
+| Content BG | `#F5F4F2` | Main content area |
+| Glass Surface | `rgba(255,255,255,0.55)` | Glass cards |
+| Solid Surface | `#F8F8F7` | Forms, inputs |
+| Dark Surface | `#171716` | Feature card anchor |
 
-### Category colors
-- Coding: `#3b82f6`
-- Work: `#10b981`
-- AI: `#8b5cf6`
-- Development: `#f59e0b`
-- Design: `#ec4899`
-- Productivity: `#06b6d4`
-- Finance: `#84cc16`
-- Learning: `#f97316`
-- Other: `#6b7280`
+### Text
+| Token | Value | Usage |
+|---|---|---|
+| Primary | `#172033` | Headings, body |
+| Secondary | `#6F737A` | Subtitles, captions |
+| Muted | `#9A9A9A` | Labels, hints |
+
+### Accents
+| Token | Value | Usage |
+|---|---|---|
+| Primary | `#C88D68` | Buttons, links, active states |
+| Primary Hover | `#B07A5A` | Hover states |
+| Soft Accent | `#D8C5B3` | Gradients, secondary elements |
+
+### Semantic
+| Token | Value | Usage |
+|---|---|---|
+| Success | `#6F9B7A` | Active status |
+| Warning | `#C9A227` | Inactive, medium priority |
+| Error | `#C25A3C` | Archived, high priority |
+| Info | `#6B8E9B` | Focus rings, info states |
 
 ---
 
 ## Components
 
 ### Buttons
-- Primary: filled blue, white text
-- Secondary: white with border
+- Primary: accent filled, white text
+- Secondary: glass with border
 - Ghost: transparent, hover background
-- Danger: white with red border/text
+- Danger: glass with red border/text
 
 ### Inputs
-- 32px height, 6px border radius
-- Blue focus ring (3px offset)
-- Placeholder: `#94a3b8`
-
-### Checkboxes
-- 16px visual, 3px border radius
-- Blue checked state
-- Indeterminate state supported
+- 40px height, 12px radius
+- Solid surface background
+- Accent focus ring (3px offset)
+- Muted placeholder color
 
 ### Badges
 - Pill shape, 9999px radius
 - Semantic variants: success, warning, error, info, default
 
-### Table
-- Sticky headers with subtle background
-- 10px vertical padding per row
-- Hover state: `#f8fafc`
-- Selected row: `#eff6ff`
+### Cards
+- Glass surface, 18px radius, 24px padding
+- Hover: lift 2px, accent top border
+- Subtle shadow, glass border
 
 ### Filter panel
-- Collapsible sections
+- Collapsible
+- Glass background
 - Multi-select checkboxes
 - Clear-all action when filters active
 
@@ -101,39 +111,44 @@ Inline SVG, 14-16px, stroke-based for UI icons, filled for status indicators.
 - Optional action button
 
 ### Selection toolbar
-- Animated slide-in
+- Animated slide-down
 - Count display + actions
-- Blue background tint
+- Light accent background
 
 ---
 
 ## Responsive Design
 
 ### Desktop (>= 1024px)
-- Full filter panel visible
-- Multi-column table
-- Horizontal scroll for overflow
+- Full sidebar (240px)
+- 4-column KPI row
+- 2-column dashboard grid
+- Full table columns visible
 
 ### Tablet (768px - 1023px)
-- Collapsible filter drawer
-- Reduced visible columns
-- Stacked toolbars
+- Sidebar adapts
+- 2-column KPI row
+- Single-column dashboard
+- Table horizontal scroll
 
 ### Mobile (< 768px)
-- Filter drawer/sheet
-- Single column card layout for grid rows (future)
-- Preserve search and selection
-- Avoid horizontal scroll where possible
+- Sidebar hidden (bottom sheet)
+- Single-column KPI
+- Single-column cards
+- Tables → card layout
+- Touch targets >= 44px
+- Backdrop blur reduced to 12px
 
 ---
 
 ## Accessibility
 
 - All interactive elements keyboard accessible
-- Visible focus states (2px blue outline)
-- Semantic HTML (table, th, buttons)
+- Visible focus states (2px accent outline)
+- Semantic HTML (nav, main, table, th, button)
 - Accessible labels on inputs
 - Checkbox inputs with visual indicators
 - `aria-live` regions for selection count
 - `aria-sort` on sortable headers
 - `target="_blank"` with `rel="noopener noreferrer"`
+- WCAG 2.2 AA color contrast

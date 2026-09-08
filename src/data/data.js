@@ -25,6 +25,8 @@ export const accounts = [
       { url: "https://github.com/emilkowalski/skills", description: "Developer skills tracker and portfolio builder" },
       { url: "https://github.com/AdguardTeam/Adguardhome", description: "Network-wide ad blocker and privacy protection" },
       { url: "https://github.com/Siddhant-Goswami/100x-LLM", description: "Collection of LLM resources and tools" },
+      { url: "https://github.com/gastownhall/gastown", description: "Gastown development toolkit" },
+      { url: "https://github.com/github/spec-kit", description: "GitHub specification kit and templates" },
     ],
     tags: ["git", "code", "repository"],
     type: "website",
@@ -36,7 +38,7 @@ export const accounts = [
     owner: "DevTeam",
     createdAt: "2024-01-01",
     updatedAt: "2024-06-01",
-    notes: "Primary repo hosting. Tools: GitHub.com (code hosting), GitHub Copilot (AI pair programmer), free-for-dev (free SaaS list), public-apis (public APIs list), awesome-mcp-servers (MCP servers list), strix (AI browser agent), easyspider (visual web scraper), coolify (self-hostable PaaS), openhands (AI coding agent), maxun (web scraping agent), open-webui (LLM web UI), browser-use (browser automation), langflow (LangChain visual builder), crawl4AI (web crawler), dify (LLM app platform), impeccable (image background remover), skills (developer skills tracker), AdguardHome (network-wide ad blocker), 100x-LLM (LLM resources collection).",
+    notes: "Primary repo hosting. Tools: GitHub.com (code hosting), GitHub Copilot (AI pair programmer), free-for-dev (free SaaS list), public-apis (public APIs list), awesome-mcp-servers (MCP servers list), strix (AI browser agent), easyspider (visual web scraper), coolify (self-hostable PaaS), openhands (AI coding agent), maxun (web scraping agent), open-webui (LLM web UI), browser-use (browser automation), langflow (LangChain visual builder), crawl4AI (web crawler), dify (LLM app platform), impeccable (image background remover), skills (developer skills tracker), AdguardHome (network-wide ad blocker), 100x-LLM (LLM resources collection), gastown (Gastown development toolkit), spec-kit (GitHub specification kit and templates).",
     sections: ["work", "personal"],
   },
   {

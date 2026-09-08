@@ -1,14 +1,35 @@
 .account-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 20px;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
+  gap: var(--spacing-md);
+  padding: var(--spacing-card);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+}
+
+.account-card:active {
+  transform: scale(0.98);
+}
+
+.account-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 500ms ease-out;
+  background: var(--color-primary);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.account-card:active::after {
+  transform: scale(4);
 }
 
 .account-card::before {
@@ -18,15 +39,16 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary) 0%, #8b5cf6 100%);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent-soft) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
 
 .account-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-border);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-glass-border-hover);
+  background: var(--color-surface-glass);
 }
 
 .account-card:hover::before {
@@ -35,13 +57,13 @@
 
 .account-card-selected {
   background: var(--color-primary-light);
-  border-color: var(--color-primary-subtle);
-  box-shadow: 0 0 0 1px var(--color-primary-subtle);
+  border-color: rgba(200, 141, 104, 0.3);
+  box-shadow: 0 0 0 1px rgba(200, 141, 104, 0.2), var(--shadow-card);
 }
 
 .account-card-selected:hover {
   background: var(--color-primary-light);
-  border-color: var(--color-primary-subtle);
+  border-color: rgba(200, 141, 104, 0.3);
 }
 
 .account-card-header {
@@ -83,16 +105,11 @@
 .account-card-featured {
   display: inline-flex;
   flex-shrink: 0;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  color: var(--color-warning);
 }
 
 .account-card-description {
-  font-size: 14px;
+  font-size: var(--font-size-body);
   color: var(--color-text-secondary);
   line-height: 1.5;
 }
@@ -124,7 +141,7 @@
   justify-content: space-between;
   gap: 16px;
   padding-top: 16px;
-  border-top: 1px solid var(--color-border-subtle);
+  border-top: 1px solid var(--color-border);
 }
 
 .account-card-tags {
@@ -137,35 +154,49 @@
   display: inline-flex;
   padding: 3px 10px;
   border-radius: var(--radius-full);
-  background: var(--color-bg);
+  background: var(--color-surface-glass);
   color: var(--color-text-secondary);
   font-size: 12px;
   font-weight: 500;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--color-glass-border);
   transition: all var(--transition-fast);
 }
 
 .tag-chip:hover {
   background: var(--color-primary-light);
   color: var(--color-primary);
-  border-color: var(--color-primary-subtle);
+  border-color: rgba(200, 141, 104, 0.25);
   transform: translateY(-1px);
 }
 
 .tag-chip-muted {
   color: var(--color-text-muted);
-  background: var(--color-surface);
-  border-color: var(--color-border-subtle);
-}
-
-.account-card-cell-muted {
-  color: var(--color-text-muted);
+  background: var(--color-surface-glass);
+  border-color: var(--color-glass-border);
 }
 
 .account-card-urls {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+}
+
+.account-card-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.account-card-open:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-hover);
 }
 
 .account-card-more {
@@ -212,18 +243,59 @@
   height: 20px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  color: var(--color-surface);
+  background: var(--color-surface-solid);
+  color: transparent;
   transition: all var(--transition-fast);
 }
 
 .card-select-input:checked + .card-select-visual {
   background: var(--color-primary);
   border-color: var(--color-primary);
-  color: var(--color-surface);
+  color: #ffffff;
 }
 
 .card-select-input:focus-visible + .card-select-visual {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+.account-card-pin {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: var(--color-surface-glass);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
+  z-index: 2;
+}
+
+.account-card-pin:hover {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+  transform: scale(1.08);
+}
+
+.account-card-pinned {
+  border-color: var(--color-warning);
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.18), var(--shadow-card);
+}
+
+.account-card-pinned::before {
+  background: linear-gradient(90deg, var(--color-warning) 0%, var(--color-accent-soft) 100%);
+  opacity: 1;
+}
+
+.account-card-pinned:hover {
+  border-color: var(--color-warning);
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.28), var(--shadow-card-hover);
 }

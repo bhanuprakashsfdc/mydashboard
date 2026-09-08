@@ -1,17 +1,34 @@
-.account-detail {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 32px;
-  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.account-detail-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-content-bg);
+}
+
+.account-detail-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--spacing-xl);
+  background: transparent;
+}
+
+.account-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
 }
 
 .account-detail-header {
-  margin-bottom: 32px;
+  margin-bottom: var(--spacing-lg);
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .account-detail-back {
   display: inline-flex;
-  font-size: 14px;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-body);
   color: var(--color-primary);
   text-decoration: none;
   margin-bottom: 16px;
@@ -41,8 +58,8 @@
 }
 
 .account-detail-title {
-  font-size: 32px;
-  font-weight: 700;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-page-title);
   color: var(--color-text-primary);
   margin: 0;
   letter-spacing: -0.02em;
@@ -50,11 +67,11 @@
 
 .account-detail-featured {
   display: inline-flex;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  color: var(--color-warning);
 }
 
 .account-detail-description {
-  font-size: 16px;
+  font-size: var(--font-size-body);
   color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.6;
@@ -64,11 +81,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  margin-bottom: 32px;
-  padding: 20px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
+  padding: var(--spacing-card);
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-card);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--shadow-card);
 }
 
 .account-detail-meta-item {
@@ -86,7 +105,7 @@
 }
 
 .account-detail-section {
-  margin-bottom: 32px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .account-detail-section-title {
@@ -107,20 +126,23 @@
 }
 
 .account-detail-url-item {
-  padding: 16px 20px;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
+  padding: var(--spacing-card);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-card);
 }
 
 .account-detail-url-item:hover {
-  border-color: var(--color-primary-subtle);
-  box-shadow: var(--shadow-md);
+  border-color: rgba(200, 141, 104, 0.3);
+  box-shadow: var(--shadow-card-hover);
   transform: translateX(4px);
 }
 
@@ -148,24 +170,38 @@
   gap: 8px;
   padding: 8px 16px;
   border-radius: var(--radius-full);
-  background: var(--color-bg);
+  background: var(--color-surface-glass);
   color: var(--color-text-secondary);
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--color-glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: all var(--transition-fast);
 }
 
 .account-detail-section-badge:hover {
   background: var(--color-primary-light);
   color: var(--color-primary);
-  border-color: var(--color-primary-subtle);
+  border-color: rgba(200, 141, 104, 0.25);
   transform: translateY(-2px);
 }
 
 .account-detail-section-icon {
   font-size: 16px;
   line-height: 1;
+}
+
+.tag-chip {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-glass);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--color-glass-border);
+  transition: all var(--transition-fast);
 }
 
 @keyframes fadeInUp {
@@ -179,11 +215,21 @@
   }
 }
 
-@media (max-width: 768px) {
-  .account-detail {
-    padding: 20px;
+@media (max-width: 1024px) {
+  .account-detail-page {
+    flex-direction: column;
   }
-  
+
+  .account-detail-main {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .account-detail-main {
+    padding: var(--spacing-md);
+  }
+
   .account-detail-title {
     font-size: 24px;
   }

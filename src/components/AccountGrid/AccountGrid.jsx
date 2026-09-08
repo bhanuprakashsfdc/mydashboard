@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
+import Icon from "../Icon/Icon";
 import Checkbox from "../ui/Checkbox";
 import AccountCard from "./AccountCard";
 import SelectionToolbar from "../SelectionToolbar/SelectionToolbar";
@@ -7,11 +8,16 @@ import "./AccountGrid.css";
 
 export default function AccountGrid({
   accounts,
+  pinnedIds = new Set(),
+  pinnedCount = 0,
+  onUnpinAll,
   selectedIds,
   toggleOne,
   toggleAllFiltered,
   clearSelection,
   isSelected,
+  isPinned,
+  onPinToggle,
   isAllFilteredSelected,
   isSomeFilteredSelected,
   sortState,
@@ -48,6 +54,21 @@ export default function AccountGrid({
           {selectedIds.size > 0 && (
             <span className="account-grid-selection-count">
               {selectedIds.size} selected
+            </span>
+          )}
+          {pinnedCount > 0 && (
+            <span className="account-grid-pinned-count" title="Pinned accounts stay at the top">
+              <Icon name="Pin" size={12} />
+              {pinnedCount} pinned
+              {onUnpinAll && (
+                <button
+                  type="button"
+                  className="account-grid-unpin-all"
+                  onClick={onUnpinAll}
+                >
+                  Unpin all
+                </button>
+              )}
             </span>
           )}
         </div>
@@ -105,6 +126,8 @@ export default function AccountGrid({
                 isSelected={isSelected(account.id)}
                 onToggle={toggleOne}
                 index={index}
+                pinned={isPinned(account.id)}
+                onPinToggle={onPinToggle}
               />
             ))}
           </div>

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Input from "../ui/Input";
+import Icon from "../Icon/Icon";
 
 export default function SearchBar({ value, onChange, placeholder = "Search accounts..." }) {
   const [focused, setFocused] = useState(false);
@@ -13,17 +14,9 @@ export default function SearchBar({ value, onChange, placeholder = "Search accou
 
   return (
     <div className={`search-bar ${focused ? "search-bar-focused" : ""}`}>
-      <svg
-        className="search-bar-icon"
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-      >
-        <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M11 11L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
+      <span className="search-bar-icon">
+        <Icon name="Search" size={16} />
+      </span>
       <Input
         ref={inputRef}
         value={value}
@@ -39,14 +32,7 @@ export default function SearchBar({ value, onChange, placeholder = "Search accou
           onClick={() => onChange("")}
           aria-label="Clear search"
         >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path
-              d="M3 3L11 11M11 3L3 11"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
+          <Icon name="X" size={14} />
         </button>
       )}
     </div>
