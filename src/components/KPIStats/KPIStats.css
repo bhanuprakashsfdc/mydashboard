@@ -1,0 +1,114 @@
+.kpi-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.kpi-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-card);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card:active {
+  transform: scale(0.98);
+}
+
+.kpi-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-glass-border-hover);
+  transform: translateY(-2px);
+}
+
+.kpi-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.kpi-card-label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-small);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpi-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.kpi-card-value {
+  font-size: var(--font-size-kpi);
+  font-weight: var(--font-weight-kpi);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.kpi-card-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-small);
+}
+
+.kpi-trend-up {
+  color: var(--color-success);
+}
+
+.kpi-trend-down {
+  color: var(--color-error);
+}
+
+.kpi-card-dark {
+  background: var(--color-dark-surface);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-dark-text);
+}
+
+.kpi-card-dark .kpi-card-label {
+  color: rgba(245, 244, 242, 0.6);
+}
+
+.kpi-card-dark .kpi-card-value {
+  color: var(--color-dark-text);
+}
+
+.kpi-card-dark .kpi-card-icon {
+  background: rgba(200, 141, 104, 0.18);
+  color: var(--color-accent-soft);
+}
+
+@media (max-width: 1024px) {
+  .kpi-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-stats-row {
+    grid-template-columns: 1fr;
+  }
+}

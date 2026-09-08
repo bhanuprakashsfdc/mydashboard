@@ -1,0 +1,182 @@
+.account-grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.account-grid-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-card);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.account-grid-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.select-all-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.select-all-label:hover {
+  color: var(--color-text-primary);
+}
+
+.select-all-text {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.account-grid-selection-count {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(200, 141, 104, 0.2);
+}
+
+.account-grid-pinned-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  color: var(--color-warning);
+  background: var(--color-warning-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.account-grid-pinned-count button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 10px;
+  text-decoration: underline;
+  padding: 0 2px;
+}
+
+.account-grid-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.column-visibility-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  user-select: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.column-visibility-toggle:hover {
+  background: var(--color-surface-solid);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.column-visibility-toggle select {
+  font-size: var(--font-size-body);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-solid);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.column-visibility-toggle select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.column-visibility-toggle select option {
+  background: var(--color-surface-solid);
+  color: var(--color-text-primary);
+}
+
+.account-grid-scroll {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: calc(100vh - 380px);
+  padding: var(--spacing-md);
+}
+
+.account-grid-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.account-grid-empty {
+  grid-column: 1 / -1;
+  padding: 60px 24px;
+}
+
+.sort-indicator {
+  display: inline-flex;
+  color: var(--color-primary);
+  transition: transform var(--transition-fast);
+}
+
+.sort-indicator-inactive {
+  display: inline-flex;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.th-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.th-button:hover {
+  color: var(--color-text-primary);
+}

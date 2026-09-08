@@ -1,0 +1,147 @@
+.quotes-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-content-bg);
+  transition: margin-left var(--transition-base);
+}
+
+.quotes-page-collapsed .quotes-page-main {
+  margin-left: 64px;
+}
+
+.quotes-page-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--spacing-xl);
+  background: transparent;
+  transition: margin-left var(--transition-base);
+}
+
+.quotes-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.quotes-page-header {
+  margin-bottom: var(--spacing-lg);
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quotes-page-title {
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-page-title);
+  color: var(--color-text-primary);
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.quotes-page-subtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.quotes-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.quotes-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: var(--spacing-card);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.quote-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-glass-border-hover);
+}
+
+.quote-card-content {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+.quote-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  margin: 0;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  z-index: 1;
+}
+
+.quote-author {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .quotes-page {
+    flex-direction: column;
+  }
+
+  .quotes-page-main {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .quotes-page-main {
+    padding: var(--spacing-md);
+  }
+
+  .quotes-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,211 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  flex-shrink: 0;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.app-header-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-solid);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.app-header-menu:hover {
+  background: var(--color-surface-glass);
+  color: var(--color-text-primary);
+  border-color: var(--color-primary);
+}
+
+.app-header-menu:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.app-header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.app-header-accent {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 28px;
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-accent-soft) 100%);
+  border-radius: 2px;
+  margin-left: -8px;
+}
+
+.app-header-heading {
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-page-title);
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  position: relative;
+}
+
+.app-header-subtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  position: relative;
+}
+
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+.app-header-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-solid);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.app-header-theme:hover {
+  background: var(--color-surface-glass);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.app-header-theme:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.app-header-notification {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-solid);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.app-header-notification:hover {
+  background: var(--color-surface-glass);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.app-header-notification:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.app-header-notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-full);
+  background: var(--color-error);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: var(--font-weight-small);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-content-bg);
+}
+
+.app-header-user-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+
+.app-header-user-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Ripple effect on click */
+.app-header-menu:active::after,
+.app-header-theme:active::after,
+.app-header-notification:active::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 400ms ease-out;
+  background: var(--color-primary);
+  opacity: 0.2;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-wrap: wrap;
+    padding: var(--spacing-lg) var(--spacing-md);
+    position: sticky;
+  }
+
+  .app-header-heading {
+    font-size: 24px;
+  }
+
+  .app-header-accent {
+    margin-left: 0;
+  }
+
+  .app-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

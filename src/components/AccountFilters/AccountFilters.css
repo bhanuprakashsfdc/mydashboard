@@ -1,0 +1,33 @@
+.account-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.account-filters-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.account-filters-top .search-bar {
+  flex: 1;
+  max-width: 480px;
+}
+
+.account-filters-meta {
+  margin-left: auto;
+}
+
+.account-filters-count {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  background: var(--color-surface-glass);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

@@ -1,0 +1,58 @@
+.tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 1000;
+  padding: 6px 10px;
+  background: var(--color-dark-surface);
+  color: var(--color-dark-text);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  box-shadow: var(--shadow-float);
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color-dark-surface);
+  transform: rotate(45deg);
+}
+
+.tooltip-top::after {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.tooltip-bottom::after {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.tooltip-left::after {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.tooltip-right::after {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
